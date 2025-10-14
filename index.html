@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Audios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .audio-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        audio {
+            width: 100%;
+            margin: 10px 0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎧 Audios Disponibles</h1>
+    <div id="audios-container"></div>
+
+    <script>
+        // Generar automáticamente los 56 reproductores
+        function cargarAudios() {
+            const container = document.getElementById('audios-container');
+            
+            for (let i = 1; i <= 56; i++) {
+                const numero = i.toString().padStart(2, '0');
+                const audioDiv = document.createElement('div');
+                audioDiv.className = 'audio-item';
+                audioDiv.innerHTML = `
+                    <h3>Audio ${numero}</h3>
+                    <audio controls preload="none">
+                        <source src="audios/audio_${numero}.mp3" type="audio/mpeg">
+                        Tu navegador no soporta audio HTML5.
+                    </audio>
+                `;
+                container.appendChild(audioDiv);
+            }
+        }
+        
+        // Cargar cuando la página esté lista
+        document.addEventListener('DOMContentLoaded', cargarAudios);
+    </script>
+</body>
+</html>
